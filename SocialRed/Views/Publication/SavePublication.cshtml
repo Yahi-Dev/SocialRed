@@ -1,0 +1,66 @@
+﻿@using SocialRed.Core.Application.ViewModels.Publication;
+@model SavePublicationViewModel
+@{
+    bool editMode = Model.Id == 0 ? false : true;
+    ViewData["Title"] = "EditMuro";
+}
+
+<div class="container" style="margin: 40px;">
+
+    <div class="row">
+
+        <div class="col-6 offset-3">
+
+            <div class="card" id="CardStyle">
+
+                <div class="card-header bg-info text-light text-center">
+                    <h4>
+                        <h4>@(editMode ? $"Editando la publiacion" : "Creando una nueva publicacion")</h4>
+                    </h4>
+                </div>
+
+                <div class="card-body">
+                    <form method="post" asp-controller="Publication" asp-action="@(editMode ? "EditPost":"Create")" enctype="multipart/form-data">
+
+                        <div class="mb-3">
+                            <label asp-for="DescriptionPublication" class="form-label">Descripcion</label>
+                            <input asp-for="DescriptionPublication" placeholder="Descripcion de la publicacion" class="form-control" />
+                            <span asp-validation-for="DescriptionPublication" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="UrlVideoPublication" class="form-label">Url del video</label>
+                            <input asp-for="UrlVideoPublication" placeholder="Url del Reel" class="form-control" />
+                            <span asp-validation-for="UrlVideoPublication" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="FileImg" class="form-label">Seleccione un archivo:</label>
+                            @if (editMode)
+                            {
+                                <input asp-for="FileImg" class="form-control" />
+                            }
+                            else
+                            {
+                                <input required asp-for="FileImg" class="form-control" />
+                            }
+
+                            <span asp-validation-for="FileImg" class="text-danger"></span>
+                        </div>
+
+
+                        <input type="hidden" asp-for="Id" />
+
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <a asp-controller="Home" asp-action="Index" class="btn btn-warning">Volver atras</a>
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

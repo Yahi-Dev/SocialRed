@@ -1,0 +1,45 @@
+﻿@using SocialRed.Core.Application.ViewModels.Muro;
+@model List<MuroViewModel>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link rel="stylesheet" href="~/css/muro.css" />
+
+
+<ul class="nav justify-content-end">
+
+    <li class="nav-item">
+        <a class="btn btn-outline-warning" asp-controller="Profile" asp-route-id="" asp-action="EditInfoAccount">Editar perfil</a>
+    </li>
+    <li class="nav-item">
+        <a class="btn btn-outline-info" asp-controller="Muro" asp-action="SaveMuro" style="margin-left: 20px;">Actualizar muro</a>
+    </li>
+</ul>
+
+<div class="container">
+    <div class="row">
+        @foreach (var muroViewModel in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <!-- Aquí se ajusta el tamaño de cada card -->
+                <article class="profile d-inline-block" style="margin-top: 50px;">
+                    <div class="profile-image">
+                        <img src="@muroViewModel.ImagePublication" />
+                    </div>
+                    <h2 class="profile-username">@muroViewModel.CreateBy</h2>
+                    <small class="profile-user-handle">@muroViewModel.Created?.ToString("yyyy-MM-dd")</small>
+                    <p>@muroViewModel.DescriptionPublication</p>
+                    <div class="profile-actions">
+                        <a  asp-controller="Muro" asp-action="EditMuro" asp-route-id="@muroViewModel.Id" class="btn btn-outline-warning border-warning" style="margin-right: 10px;">Editar</a>
+                        @if(muroViewModel.UrlVideoPublication != null)
+                        {
+                            <a asp-controller="Muro" asp-action="ViewVideo" asp-route-id="@muroViewModel.Id" class="btn btn-outline-success border-success"><img src="~/Iconos/video.png" style="width: 30px; height: 30px;" /></a>
+                        }
+                        <a  asp-controller="Muro" asp-action="Delete" asp-route-id="@muroViewModel.Id" class="btn btn-outline-danger border-danger">Eliminar</a>
+                    </div>
+                </article>
+            </div>
+        }
+    </div>
+</div>

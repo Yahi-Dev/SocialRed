@@ -1,0 +1,43 @@
+﻿@using SocialRed.Core.Application.ViewModels.Comment;
+@model SaveCommentViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="container my-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-6">
+
+            <div class="card shadow-lg rounded" id="CardStyle">
+
+                <div class="card-header bg-info text-light text-center">
+                    <h4>Creando un nuevo Comentario</h4>
+                </div>
+
+                <div class="card-body">
+                    <form method="post" asp-controller="Comment" asp-action="AddCommentPost" enctype="multipart/form-data">
+
+                        <div class="mb-3">
+                            <label asp-for="Comments" class="form-label">¿Qué desea comentar?</label>
+                            <input asp-for="Comments" placeholder="Comentar..." class="form-control" />
+                            <span asp-validation-for="Comments" class="text-danger"></span>
+                        </div>
+
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                            <a asp-controller="Comment" asp-action="Comments" class="btn btn-warning mt-2">Volver atrás</a>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

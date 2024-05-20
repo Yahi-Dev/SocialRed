@@ -1,0 +1,16 @@
+﻿@model SocialRed.Core.Application.ViewModels.Muro.SaveMuroViewModel;
+@{
+    ViewData["Title"] = "VerVideo";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/ViewContenido.css" />
+</head>
+
+<div class="container-fluid">
+
+    <div class="tv-container mx-auto text-center">
+        <iframe width="560" height="315" src="@Model.UrlVideoPublication" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+    <a asp-controller="Profile" asp-action="Index" class="btn btn-warning">Volver atras</a>
+</div>

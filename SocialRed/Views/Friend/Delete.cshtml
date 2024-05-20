@@ -1,0 +1,31 @@
+﻿@using SocialRed.Core.Application.ViewModels.Friends;
+@model SaveFriendViewModel
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="row" style="margin-top: 40px;">
+
+    <div class="col-6 offset-3">
+
+        <div class="card">
+
+            <div class="card-header bg-danger text-light">
+
+                <h4>¿Esta seguro que desea eliminar esta Linda amistad?</h4>
+            </div>
+            <div class="card-body">
+                <form method="post" asp-controller="Friend" asp-action="DeletePost">
+
+                    <input type="hidden" asp-for="Id" />
+
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                    <a asp-controller="Friend" asp-action="ViewFriend" class="btn btn-warning">Cancelar</a>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

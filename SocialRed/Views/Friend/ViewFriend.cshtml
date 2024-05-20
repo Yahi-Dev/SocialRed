@@ -1,0 +1,45 @@
+﻿@using SocialRed.Core.Application.ViewModels.Friends
+@model List<FriendViewModel>
+
+@{
+    ViewData["Title"] = "Your friends";
+}
+
+<div class="container-fluid" style="margin-top: 7px;">
+    <div class="row mb-3">
+        <div class="col-3 offset-9" style="margin-top:15px;">
+            <a asp-controller="Friend" asp-action="Index" class="btn btn-outline-success">
+                Volver atras
+            </a>
+        </div>
+    </div>
+    @if (Model == null || Model.Count == 0)
+    {
+        <h2 class="text-center text-white">No Tienes Amigos</h2>
+    }
+    else
+    {
+        <div class="card-body">
+            <div class="row">
+                @foreach (FriendViewModel item in Model)
+                {
+                    <div class="card mb-3 mr-3" style="max-width: 500px; margin-right: 20px;">
+                        <div class="row no-gutters">
+                            <div class="col-md-4">
+                                <br />
+                                <img src="@item.ImageUser" class="card-img">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title"><strong>@item.FirtsName @item.LastName</strong></h5>
+                                    <p class="card-text"><strong>Username: </strong>@item.UserName</p>
+                                </div>
+                                <a asp-controller="Friend" asp-action="Delete" asp-route-id="@item.IdRelashionship" class="btn btn-outline-danger mt-2">Eliminar</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,55 @@
+﻿@using SocialRed.Core.Application.ViewModels.Publication;
+@model List<PublicationViewModel>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<link href="~/css/publication.css" rel="stylesheet"/>
+
+<div class="container-fluid">
+
+    <div class="row mb-3">
+        <div class="col-3 offset-9">
+            <a asp-controller="Publication" asp-action="Create" class="btn btn-outline-success">
+                Crear nueva publiacion
+            </a>
+        </div>
+    </div>
+</div>
+@if(Model.Count == 0)
+{
+    <h6 class="text-center text-white">No hay Publicaciones</h6>
+}
+else
+{
+    <div class="container">
+        <div class="row">
+            @foreach (var vm in Model)
+            {
+                <div class="nft col-3">
+                    <div class='main'>
+                        <img class='tokenImage' src="@vm.ImagePublication" alt="NFT" />
+                        <p class='description text-white'>@vm.DescriptionPublication</p>
+                        <div class='tokenInfo'>
+                            <div class="duration">
+                                <ins>◷</ins>
+                                <p class="text-white">@vm.Created</p>
+                            </div>
+                        </div>
+                        <div class='creator'>
+                            <div class='wrapper'>
+                                <img src="@vm.ImageUser" alt="Creator" />
+                            </div>
+                            <p><ins>Creation of</ins> @vm.CreateBy</p>
+                        </div>
+                        <div class="btn-group mt-2" role="group" style="margin-top: 15px;">
+                            <a asp-controller="Publication" asp-action="Edit" asp-route-id="@vm.Id" class="btn btn-outline-success"><img src="~/Iconos/escritura.png" style="width: 30px; height: 30px;" /></a>
+                            <a asp-controller="Comment" asp-action="Comments" asp-route-id="@vm.Id" class="btn btn-outline-success"><img src="~/Iconos/comentario.png" style="width: 30px; height: 30px;" /></a>
+                            <a asp-controller="Publication" asp-action="Delete" asp-route-id="@vm.Id" class="btn btn-outline-success"><img src="~/Iconos/borrar (2).png" style="width: 30px; height: 30px;" /></a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}

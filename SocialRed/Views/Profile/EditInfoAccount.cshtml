@@ -1,0 +1,91 @@
+﻿@using SocialRed.Core.Application.ViewModels.Users;
+@model SaveUserViewModel;
+@{
+    ViewData["Title"] = "EditInfoAccount";
+}
+
+<div class="container" style="margin: 40px;">
+
+    <div class="row">
+
+        <div class="col-6 offset-3">
+
+            <div class="card" id="CardStyle">
+
+                <div class="card-header bg-info text-light text-center">
+                    <h4>
+                        Editando Informacion de la cuenta
+                    </h4>
+                </div>
+
+                <div class="card-body">
+                    <form method="post" asp-controller="Profile" asp-action="EditInfoAccount" enctype="multipart/form-data">
+
+                        <div class="mb-3">
+                            <label asp-for="FirstName" class="form-label">Primer Nombre</label>
+                            <input asp-for="FirstName" placeholder="First Name" class="form-control" />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label asp-for="LastName" class="form-label">Apellido</label>
+                            <input asp-for="LastName" placeholder="LastName" class="form-control" />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="PhoneNumber" class="form-label">Numero de Telefono</label>
+                            <input asp-for="PhoneNumber" class="form-control" placeholder="Teléfono" id="telefonoInput" oninput="formatoTelefono('telefonoInput')" maxlength="12" />
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label">Correo Electronico</label>
+                            <input asp-for="Email" placeholder="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="FileImg" class="form-label">Seleccione un archivo:</label>
+                            <input asp-for="FileImg" class="form-control" />
+                            <span asp-validation-for="FileImg" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="PasswordHash" class="form-label">Contraseña: </label>
+                            <input type="text" asp-for="PasswordHash" value="" class="form-control" placeholder="No se carga la contraseña por politica de seguridad. Puede editarla si lo desea." />
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <a asp-controller="Profile" asp-action="Index" class="btn btn-warning">Volver atras</a>
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+    function formatoTelefono(id) {
+        let telefono = document.getElementById(id).value;
+
+        telefono = telefono.replace(/[-\s]/g, '');
+
+        if (telefono.length >= 3) {
+            telefono = telefono.substring(0, 3) + '-' + telefono.substring(3);
+        }
+        if (telefono.length >= 7) {
+            telefono = telefono.substring(0, 7) + '-' + telefono.substring(7);
+        }
+        if (telefono.length <= 12) {
+            document.getElementById(id).value = telefono;
+        }
+    }
+</script>

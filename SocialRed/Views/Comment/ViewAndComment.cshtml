@@ -1,0 +1,43 @@
+﻿@using SocialRed.Core.Application.ViewModels.Comment;
+@model List<CommentViewModel>
+@{
+    ViewData["Title"] = "ViewAndComment";
+}
+
+<div class="container-fluid" style="margin-top: 7px;">
+    <div class="row mb-3">
+        <div class="col-3 offset-9" style="margin-top:15px;">
+            <a asp-controller="Comment" asp-action="AddComment" class="btn btn-outline-success">
+                Agregar comentario
+            </a>
+        </div>
+    </div>
+    @if (Model == null || Model.Count == 0)
+    {
+        <h2 class="text-center text-white">No hay comentarios en la publicacion</h2>
+    }
+    else
+    {
+        <div class="card-body">
+            <div class="row">
+                @foreach (CommentViewModel item in Model)
+                {
+                    <div class="card mb-3 mr-3" style="max-width: 500px; margin-right: 20px;">
+                        <div class="row no-gutters">
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <p class="card-text"><strong></strong>@item.Comments</p>
+                                    <p class="card-text"><small class="text-muted"><strong>@item.CreateBy</strong></small><img style="margin-left: 7px;" src="@item.ImageProfile" id="Image" /></p>
+                                    <p class="text-black">@item.Created</p>
+                                    <a asp-controller="Reply" asp-action="ReplyComment" asp-route-id="@item.Id" class="btn btn-outline-danger mt-2">Responder</a>
+                                   <a asp-controller="Reply" asp-action="ViewReply" asp-route-id="@item.Id" class="btn btn-outline-info mt-2">Ver Reply</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+    }
+</div>

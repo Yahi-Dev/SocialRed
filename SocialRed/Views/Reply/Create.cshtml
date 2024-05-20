@@ -1,0 +1,60 @@
+﻿@using SocialRed.Core.Application.ViewModels.Reply;
+@model SaveReplyViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="container my-5">
+
+    <div class="card-body text-center">
+        <div class="row justify-content-center">
+
+            <div class="card mb-3 mr-3" style="max-width: 500px; margin-right: 20px;">
+                <div class="row no-gutters">
+                    <div class="">
+                        <div class="card-body">
+                            <p class="card-text"><strong></strong>@Model.CommentReply</p>
+                            <p class="card-text"><small class="text-muted"><strong> Respondiendo el comentario de @Model.IUsernameUserOfCreateComment</strong></small> <img src="@Model.ImageUserOfCreateComment" id="Image" /></p>
+                            <p class="text-black">@Model.OfCreatedComment</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center" style="margin-top: 10px;">
+
+        <div class="col-md-6">
+
+            <div class="card shadow-lg rounded" id="CardStyle">
+
+                <div class="card-header bg-info text-light text-center">
+                    <h4>respondiendo el comentario</h4>
+                </div>
+
+                <div class="card-body">
+                    <form method="post" asp-controller="Reply" asp-action="ReplyComment" enctype="multipart/form-data">
+
+                        <div class="mb-3">
+                            <label asp-for="ContentReply" class="form-label">¿Qué desea responder?</label>
+                            <input asp-for="ContentReply" placeholder="Responder el comentario" class="form-control" />
+                            <span asp-validation-for="ContentReply" class="text-danger"></span>
+                        </div>
+
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                            <a asp-controller="Reply" asp-action="ViewReply" class="btn btn-warning mt-2">Volver atrás</a>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

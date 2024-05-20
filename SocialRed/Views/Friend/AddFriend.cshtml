@@ -1,0 +1,69 @@
+﻿@using SocialRed.Core.Application.ViewModels.Friends;
+@model SaveFriendViewModel
+@{
+    ViewData["Title"] = "AddFriend";
+}
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<link rel="stylesheet" href="sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<div class="container my-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-6">
+
+            <div class="card shadow-lg rounded" id="CardStyle">
+
+                <div class="card-header bg-info text-light text-center">
+                    <h4>Agregar compañero</h4>
+                </div>
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                @if (ViewBag.Friend != null)
+                {
+                    <script>
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error!',
+                            text: '@ViewBag.Friend',
+                            showConfirmButton: true,
+                            timer: 5000
+                        });
+                    </script>
+                }
+                <div class="card-body">
+                    <form method="post" asp-controller="Friend" asp-action="AddFriend" enctype="multipart/form-data">
+
+                        <div class="mb-3">
+                            <label asp-for="UserNameFriend" class="form-label">¿A quien desea agregar?</label>
+                            <input asp-for="UserNameFriend" placeholder="Username" class="form-control" />
+                            <span asp-validation-for="UserNameFriend" class="text-danger"></span>
+                        </div>
+
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                            <a asp-controller="Friend" asp-action="Index" class="btn btn-warning mt-2">Volver atrás</a>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="sweetalert2.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

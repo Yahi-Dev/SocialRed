@@ -1,0 +1,42 @@
+﻿@using SocialRed.Core.Application.ViewModels.Reply;
+@model List<ReplyViewModel>
+@{
+    ViewData["Title"] = "ViewAndComment";
+}
+
+<div class="container-fluid" style="margin-top: 7px;">
+    <div class="row mb-3">
+        <div class="col-3 offset-9" style="margin-top:15px;">
+            <a asp-controller="Reply" asp-action="ReplyComment" class="btn btn-outline-success">
+                Agregar respuesta
+            </a>
+        </div>
+        <div class="col-3 offset-9" style="margin-top:15px;">
+            <a asp-controller="Comment" asp-action="Comments" class="btn btn-outline-success">
+                Atras
+            </a>
+        </div>
+    </div>
+    @if (Model == null || Model.Count == 0)
+    {
+        <h2 class="text-center text-white">No hay respuesta a este comentario</h2>
+    }
+    else
+    {
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                @foreach (ReplyViewModel item in Model)
+                {
+                    <div class="card mb-3" style="margin-bottom: 20px;">
+                        <div class="card-body">
+                            <p class="card-text">@item.ContentReply</p>
+                            <p class="text-muted">@item.Created</p>
+                            <p class="card-text"><strong>@item.CreateBy</strong><img src="@item.ImageUser" id="Image" style="margin-left: 7px;"/></p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>
+

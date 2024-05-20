@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Images\" />
+    <Folder Include="wwwroot\Images\Products\Yahinniel\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.ViewCompilation" Version="2.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.16">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.12" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SocialRed.Core.Application\SocialRed.Core.Application.csproj" />
+    <ProjectReference Include="..\SocialRed.Infrastructure.Identity\SocialRed.Infrastructure.Identity.csproj" />
+    <ProjectReference Include="..\SocialRed.Infrastructure.Persistence\SocialRed.Infrastructure.Persistence.csproj" />
+    <ProjectReference Include="..\SocialRed.Infrastructure.Shared\SocialRed.Infrastructure.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

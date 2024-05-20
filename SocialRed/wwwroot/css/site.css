@@ -1,0 +1,66 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    background: url(https://dl.dropbox.com/s/mpmu0gjtxv2x3fs/Webp.net-resizeimage%20%281%29.jpg?raw=1) no-repeat center center fixed;
+    background-size: cover;
+}
+
+#navstyle {
+    background-color: rgba(255, 255, 255, 0.06); /* Color de fondo con transparencia */
+    -webkit-backdrop-filter: blur(20px); /* Filtro de desenfoque para mejorar la apariencia */
+    backdrop-filter: blur(20px); /* Filtro de desenfoque para mejorar la apariencia */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06); /* Agregar borde inferior con transparencia opcional */
+}
+
+
+#CardStyle {
+    background-color: rgba(255, 255, 255, 0.06);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    border-radius: 8px;
+    box-shadow: 20px 20px 22px rgba(0,0,0,0.2);
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    width: 90%; /* Establecer el ancho en un porcentaje del contenedor padre */
+    height: 90%; /* Establecer la altura en un porcentaje del contenedor padre */
+    margin: auto; /* Centrar horizontalmente */
+    margin-top: 5%; /* Centrar verticalmente, ajustar según necesites */
+}
+
+#ButtonStyle{
+    padding: 15px 0;
+    left: 10%;
+    border-radius: 5px;
+    outline: none;
+}
+
+
+#Image {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%; /* Esto hace que la imagen sea un círculo */
+}

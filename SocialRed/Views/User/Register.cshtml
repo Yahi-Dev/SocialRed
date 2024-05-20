@@ -1,0 +1,126 @@
+﻿@using SocialRed.Core.Application.ViewModels.Users;
+@model SaveUserViewModel
+@{
+    ViewData["Title"] = "Nuevo Usuario";
+}
+
+<div class="container" style="margin: 40px;">
+
+    <div class="row">
+
+        <div class="col-6 offset-3">
+
+            <div class="card">
+
+                <div class="card-header bg-info text-light text-center">
+                    <h4>
+                        Sing Up
+                    </h4>
+                </div>
+
+                <div class="card-body">
+                    @if (Model.HasError == true)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <p>@Model.Error</p>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="Close"></button>
+                        </div>
+                    }
+                    <form method="post" asp-controller="User" asp-action="Register" enctype="multipart/form-data">
+
+                        <div class="mb-3">
+                            <label asp-for="FirstName" class="form-label">Primer Nombre</label>
+                            <input asp-for="FirstName" placeholder="First Name" class="form-control" />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label asp-for="LastName" class="form-label">Apellido</label>
+                            <input asp-for="LastName" placeholder="LastName" class="form-control" />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="UserName" class="form-label">Nombre de Usuario</label>
+                            <input asp-for="UserName" placeholder="Username" class="form-control" />
+                            <span asp-validation-for="UserName" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="FileImg" class="form-label">Seleccione un archivo:</label>
+                            <input required asp-for="FileImg" class="form-control" />
+                            <span asp-validation-for="FileImg" class="text-danger"></span>
+                        </div>
+
+
+
+                        <div class="mb-3">
+                            <label asp-for="PhoneNumber" class="form-label">Numero de Telefono</label>
+                            <input asp-for="PhoneNumber" class="form-control" placeholder="Teléfono" id="telefonoInput" oninput="formatoTelefono('telefonoInput')" maxlength="12" />
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label">Correo Electronico</label>
+                            <input asp-for="Email" placeholder="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Country" class="form-label">Pais de nacimiento</label>
+                            <select name="country" asp-for="Country" class="form-select">
+                                <option value="USA">Estados Unidos</option>
+                                <option value="Canada">Canadá</option>
+                                <option value="UK">Reino Unido</option>
+                                <option value="Germany">Alemania</option>
+                                <option value="RD">Republica Dominicana</option>
+                            </select>
+                            <span asp-validation-for="Country" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="PasswordHash" class="form-label">Contraseña</label>
+                            <input asp-for="PasswordHash" placeholder="Password" class="form-control" />
+                            <span asp-validation-for="PasswordHash" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="ConfirmPassword" class="form-label">Confirmar Contraseña</label>
+                            <input asp-for="ConfirmPassword" placeholder="Confirm Password" class="form-control" />
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <a asp-controller="User" asp-action="Index" class="btn btn-warning">Volver atras</a>
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+    function formatoTelefono(id) {
+        let telefono = document.getElementById(id).value;
+
+        telefono = telefono.replace(/[-\s]/g, '');
+
+        if (telefono.length >= 3) {
+            telefono = telefono.substring(0, 3) + '-' + telefono.substring(3);
+        }
+        if (telefono.length >= 7) {
+            telefono = telefono.substring(0, 7) + '-' + telefono.substring(7);
+        }
+        if (telefono.length <= 12) {
+            document.getElementById(id).value = telefono;
+        }
+    }
+</script>
